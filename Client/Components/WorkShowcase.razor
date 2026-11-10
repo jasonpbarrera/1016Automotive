@@ -1,0 +1,345 @@
+@namespace SmallBusinessSite.Client.Components
+@inject IJSRuntime JS
+
+<div class="showcase-container">
+    <div class="showcase-header">
+        <div class="badge-tag">
+            <SharpIcon Name="crosshair" Size="16" />
+            <span>AUTHENTIC FIELD WORK</span>
+        </div>
+        <h2 class="showcase-title">Mission Showcase</h2>
+        <p class="showcase-subtitle">Real builds from our Cleveland, TN shop. Precision Geoshield window film, custom vinyl wraps, and System X certified ceramic protection.</p>
+    </div>
+
+    <!-- MARQUEE CAROUSEL -->
+    <div class="marquee-wrapper">
+        <div class="marquee-track">
+            <!-- First set of real projects -->
+            @foreach (var item in RealProjects)
+            {
+                <div class="marquee-card" @onclick="() => OpenModal(item)">
+                    <div class="card-image-wrap">
+                        <img src="@item.ImageUrl" alt="@item.Title" loading="lazy" />
+                        <div class="card-overlay">
+                            <span class="inspect-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                                <span>Inspect</span>
+                            </span>
+                        </div>
+                        <span class="category-badge @item.CategoryClass">@item.Category</span>
+                    </div>
+                    <div class="card-info">
+                        <h4>@item.Title</h4>
+                        <p class="card-specs">@item.ShortSpecs</p>
+                    </div>
+                </div>
+            }
+            <!-- Duplicate set for seamless continuous marquee loop -->
+            @foreach (var item in RealProjects)
+            {
+                <div class="marquee-card" @onclick="() => OpenModal(item)">
+                    <div class="card-image-wrap">
+                        <img src="@item.ImageUrl" alt="@item.Title" loading="lazy" />
+                        <div class="card-overlay">
+                            <span class="inspect-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                                <span>Inspect</span>
+                            </span>
+                        </div>
+                        <span class="category-badge @item.CategoryClass">@item.Category</span>
+                    </div>
+                    <div class="card-info">
+                        <h4>@item.Title</h4>
+                        <p class="card-specs">@item.ShortSpecs</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- DIRECTORY ACTION BAR -->
+    <div class="directory-actions">
+        <button class="btn btn-tactical-outline" @onclick="ToggleDirectory">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>@(showDirectory ? "Hide Photo Directory" : $"Browse Full Photo Directory ({RealProjects.Count} Builds)")</span>
+        </button>
+        <a href="/contact" class="btn btn-tactical-gold">
+            <SharpIcon Name="crosshair" Size="18" />
+            <span>Request Your Custom Quote</span>
+        </a>
+    </div>
+
+    <!-- FULL PHOTO DIRECTORY GRID (Toggleable) -->
+    @if (showDirectory)
+    {
+        <div class="directory-section animate-fade-in">
+            <div class="directory-filters">
+                <button class="filter-chip @(activeFilter == "all" ? "active" : "")" @onclick='() => SetFilter("all")'>All Builds (@RealProjects.Count)</button>
+                <button class="filter-chip @(activeFilter == "tint" ? "active" : "")" @onclick='() => SetFilter("tint")'>Window Tint</button>
+                <button class="filter-chip @(activeFilter == "wrap" ? "active" : "")" @onclick='() => SetFilter("wrap")'>Vinyl Wraps</button>
+                <button class="filter-chip @(activeFilter == "ceramic" ? "active" : "")" @onclick='() => SetFilter("ceramic")'>Ceramic Protection</button>
+            </div>
+
+            <div class="directory-grid">
+                @foreach (var item in FilteredProjects)
+                {
+                    <div class="directory-card" @onclick="() => OpenModal(item)">
+                        <div class="directory-img-wrap">
+                            <img src="@item.ImageUrl" alt="@item.Title" loading="lazy" />
+                            <span class="category-badge @item.CategoryClass">@item.Category</span>
+                            <div class="directory-hover-overlay">
+                                <span class="inspect-btn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                                    <span>Expand Build Specs</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="directory-card-body">
+                            <h4>@item.Title</h4>
+                            <p class="desc">@item.Description</p>
+                            <div class="spec-pills">
+                                @foreach (var pill in item.Pills)
+                                {
+                                    <span class="spec-pill">@pill</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    <!-- LIGHTBOX / DETAIL MODAL -->
+    @if (selectedProject != null)
+    {
+        <div class="lightbox-backdrop" @onclick="CloseModal">
+            <div class="lightbox-dialog" @onclick:stopPropagation="true">
+                <button class="lightbox-close" @onclick="CloseModal" aria-label="Close dialog">&times;</button>
+                
+                <div class="lightbox-content">
+                    <div class="lightbox-media">
+                        <img src="@selectedProject.ImageUrl" alt="@selectedProject.Title" />
+                        <span class="lightbox-badge @selectedProject.CategoryClass">@selectedProject.Category</span>
+                    </div>
+                    
+                    <div class="lightbox-details">
+                        <div class="lightbox-tag">
+                            <SharpIcon Name="crosshair" Size="14" />
+                            <span>10:16 AUTOMOTIVE SPEC SHEET</span>
+                        </div>
+                        <h3>@selectedProject.Title</h3>
+                        <p class="lightbox-desc">@selectedProject.Description</p>
+
+                        <div class="specs-grid">
+                            <div class="spec-cell">
+                                <span class="label">Vehicle</span>
+                                <span class="val">@selectedProject.Vehicle</span>
+                            </div>
+                            <div class="spec-cell">
+                                <span class="label">Primary Service</span>
+                                <span class="val">@selectedProject.Product</span>
+                            </div>
+                            <div class="spec-cell">
+                                <span class="label">Specification</span>
+                                <span class="val">@selectedProject.SpecDetail</span>
+                            </div>
+                            <div class="spec-cell">
+                                <span class="label">Certified Partner</span>
+                                <span class="val">@selectedProject.Warranty</span>
+                            </div>
+                        </div>
+
+                        <div class="lightbox-actions">
+                            <button class="nav-btn" @onclick="PrevProject" title="Previous Project">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                                <span>Previous</span>
+                            </button>
+                            <a href="/contact" class="btn btn-tactical-gold btn-sm">
+                                <span>Inquire About This Service</span>
+                            </a>
+                            <button class="nav-btn" @onclick="NextProject" title="Next Project">
+                                <span>Next</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private bool showDirectory = false;
+    private string activeFilter = "all";
+    private ProjectItem? selectedProject = null;
+
+    private void ToggleDirectory() => showDirectory = !showDirectory;
+    private void SetFilter(string filter) => activeFilter = filter;
+    private void OpenModal(ProjectItem item) => selectedProject = item;
+    private void CloseModal() => selectedProject = null;
+
+    private IEnumerable<ProjectItem> FilteredProjects =>
+        activeFilter switch
+        {
+            "tint" => RealProjects.Where(p => p.CategoryType == "tint"),
+            "wrap" => RealProjects.Where(p => p.CategoryType == "wrap"),
+            "ceramic" => RealProjects.Where(p => p.CategoryType == "ceramic"),
+            _ => RealProjects
+        };
+
+    private void NextProject()
+    {
+        if (selectedProject == null) return;
+        var idx = RealProjects.IndexOf(selectedProject);
+        selectedProject = RealProjects[(idx + 1) % RealProjects.Count];
+    }
+
+    private void PrevProject()
+    {
+        if (selectedProject == null) return;
+        var idx = RealProjects.IndexOf(selectedProject);
+        selectedProject = RealProjects[(idx - 1 + RealProjects.Count) % RealProjects.Count];
+    }
+
+    public class ProjectItem
+    {
+        public string Title { get; set; } = "";
+        public string Category { get; set; } = "";
+        public string CategoryType { get; set; } = ""; // tint, wrap, ceramic, emblem
+        public string CategoryClass { get; set; } = "";
+        public string ShortSpecs { get; set; } = "";
+        public string Description { get; set; } = "";
+        public string ImageUrl { get; set; } = "";
+        public string Vehicle { get; set; } = "";
+        public string Product { get; set; } = "";
+        public string SpecDetail { get; set; } = "";
+        public string Warranty { get; set; } = "";
+        public List<string> Pills { get; set; } = new();
+    }
+
+    private List<ProjectItem> RealProjects = new()
+    {
+        new ProjectItem
+        {
+            Title = "Lifted Ford Super Duty Custom Slate Camo Wrap",
+            Category = "VINYL WRAP & TINT",
+            CategoryType = "wrap",
+            CategoryClass = "badge-camo",
+            ShortSpecs = "Dual-Tone Blue & Slate Camo • Military Star Bed • Ceramic Tint",
+            Description = "Custom multi-panel satin blue & slate camouflage vinyl wrap installed on an aggressive lifted Ford Super Duty. Features subdued military star tailgate graphic, blacked-out trim, and high-heat-rejection dark ceramic window tint.",
+            ImageUrl = "images/showcase-superduty-camo.jpg",
+            Vehicle = "Ford F-250 Super Duty (Lifted)",
+            Product = "Custom Multi-Cam Satin Vinyl Wrap",
+            SpecDetail = "Full Bed & Cab Camo + 20% Ceramic Tint",
+            Warranty = "High-Durability Cast Film",
+            Pills = new() { "Custom Camo", "Military Star", "20% Ceramic Tint", "Lifted Build" }
+        },
+        new ProjectItem
+        {
+            Title = "Black Super Duty Ceramic Window Tint & Blackout",
+            Category = "WINDOW TINT",
+            CategoryType = "tint",
+            CategoryClass = "badge-tint",
+            ShortSpecs = "Geoshield Ceramic Tint • Heat & UV Deflection • Stealth Package",
+            Description = "Complete ceramic window film treatment installed on a late-model black Ford Super Duty truck with custom off-road wheels. Provides dramatic interior heat reduction, 99% UV radiation blocking, and enhanced nighttime driving visibility.",
+            ImageUrl = "images/real-work-black-superduty.jpg",
+            Vehicle = "Ford Super Duty Crew Cab",
+            Product = "Geoshield Ceramic Window Film",
+            SpecDetail = "Front Match + Rear Privacy + Brow",
+            Warranty = "Geoshield Authorized Dealer Warranty",
+            Pills = new() { "Geoshield Tint", "99% UV Block", "Heat Rejection", "Stealth Look" }
+        },
+        new ProjectItem
+        {
+            Title = "Tesla Model 3/Y System X Ceramic Coating & Tint",
+            Category = "CERAMIC & TINT",
+            CategoryType = "ceramic",
+            CategoryClass = "badge-ceramic",
+            ShortSpecs = "System X Certified 9H • Hex Detailing Bay • Full Ceramic Window Tint",
+            Description = "Completed in our specialized detailing bay under full hexagon inspection lighting. Coated with certified System X 9H nano-ceramic protection for deep mirror reflections and hydrophobic protection, paired with Geoshield ceramic film.",
+            ImageUrl = "images/real-work-tesla-ceramic-tint.jpg",
+            Vehicle = "Tesla Electric Sedan/Crossover",
+            Product = "System X Ceramic + Geoshield Film",
+            SpecDetail = "Multi-Stage Paint Prep + 9H Ceramic Shell",
+            Warranty = "System X Certified Center Warranty",
+            Pills = new() { "System X Certified", "9H Nano Ceramic", "Hex Bay Inspected", "Mirror Finish" }
+        },
+        new ProjectItem
+        {
+            Title = "Ford Explorer / SUV High-Gloss Copper Protection",
+            Category = "CERAMIC PROTECTION",
+            CategoryType = "ceramic",
+            CategoryClass = "badge-ceramic",
+            ShortSpecs = "System X 9H Coating • Geoshield Tint • Hex Inspection Lighting",
+            Description = "Deep metallic copper paint brought to liquid-glass perfection with multi-stage machine polishing and sealed with System X ceramic protection. Notice the crisp hexagon ceiling reflection and Geoshield window film on the windshield and side glass.",
+            ImageUrl = "images/real-work-copper-ford-bay.jpg",
+            Vehicle = "Ford SUV (Metallic Copper)",
+            Product = "System X Ceramic Coating",
+            SpecDetail = "Full Exterior Ceramic Seal + Windshield Shield",
+            Warranty = "Certified System X Protection",
+            Pills = new() { "System X 9H", "Liquid Gloss", "Hydrophobic Armor", "Geoshield Partner" }
+        },
+        new ProjectItem
+        {
+            Title = "Silver Ford Expedition Ceramic Tint & Paint Guard",
+            Category = "WINDOW TINT",
+            CategoryType = "tint",
+            CategoryClass = "badge-tint",
+            ShortSpecs = "Full Ceramic Window Tint • Micro-Edge Alignment • Factory Glass Match",
+            Description = "Full-size Ford Expedition in our shop bay receiving complete Geoshield ceramic window film and exterior paint enhancement. Seamless one-piece rear quarter windows and computer-cut front door film for clean, bubble-free durability.",
+            ImageUrl = "images/real-work-expedition-silver.jpg",
+            Vehicle = "Ford Expedition (Silver)",
+            Product = "Geoshield Ceramic Automotive Film",
+            SpecDetail = "Complete Vehicle Tint Package",
+            Warranty = "Geoshield Manufacturer Guarantee",
+            Pills = new() { "Geoshield Tint", "One-Piece Glass", "Precision Edge", "Heat Rejection" }
+        },
+        new ProjectItem
+        {
+            Title = "White Jeep Grand Cherokee Full Tint & Blackout Trim",
+            Category = "WINDOW TINT & ACCENTS",
+            CategoryType = "tint",
+            CategoryClass = "badge-tint",
+            ShortSpecs = "Geoshield Ceramic Tint • High Contrast Blackout • 99% UV Block",
+            Description = "Bright white Jeep Grand Cherokee styled in high-contrast black and white. Features dark ceramic window film all around, color-matched mirror caps, and paint correction to maintain a showroom shine.",
+            ImageUrl = "images/real-work-grandcherokee-white.jpg",
+            Vehicle = "Jeep Grand Cherokee",
+            Product = "Geoshield Ceramic Window Tint",
+            SpecDetail = "Dark Ceramic Film + Detail Prep",
+            Warranty = "Geoshield Dealer Warranty",
+            Pills = new() { "Geoshield Ceramic", "Contrast Blackout", "UV Protection", "Cabin Comfort" }
+        },
+        new ProjectItem
+        {
+            Title = "Tesla Model Ceramic Tint Profile",
+            Category = "WINDOW TINT",
+            CategoryType = "tint",
+            CategoryClass = "badge-tint",
+            ShortSpecs = "Full Side Profile Tint • Heat Block for EV Efficiency • Zero Signal Interference",
+            Description = "Side view of Tesla in our facility showing flawless ceramic window tinting. Ceramic film blocks infrared heat without containing metallic particles, ensuring zero interference with GPS, cellular, or Autopilot sensors.",
+            ImageUrl = "images/real-work-tesla-side-tint.jpg",
+            Vehicle = "Tesla EV Platform",
+            Product = "Geoshield Non-Conductive Ceramic Film",
+            SpecDetail = "Zero Radio Frequency Interference",
+            Warranty = "Full Manufacturer Warranty",
+            Pills = new() { "EV Optimized", "Non-Conductive", "IR Heat Block", "Flawless Edge" }
+        },
+        new ProjectItem
+        {
+            Title = "10:16 Automotive Official Emblem & Crest",
+            Category = "OFFICIAL BRAND",
+            CategoryType = "emblem",
+            CategoryClass = "badge-brand",
+            ShortSpecs = "Veteran-Owned • Cleveland, TN • Window Tint & Vinyl Wrap Official Insignia",
+            Description = "The official 10:16 Automotive brand insignia representing 6-year Army veteran Donny Bliss. Built on military discipline, attention to detail, and top-tier cosmetic craftsmanship for every client across Bradley County.",
+            ImageUrl = "images/logo.jpg",
+            Vehicle = "Automotive Cosmetic Craftsmanship",
+            Product = "10:16 Automotive Official Mark",
+            SpecDetail = "Founded by 6-Year Army Veteran Donny Bliss",
+            Warranty = "Veteran Pride & Craftsmanship Guarantee",
+            Pills = new() { "Veteran Owned", "Cleveland, TN", "System X Certified", "Geoshield Partner" }
+        }
+    };
+}

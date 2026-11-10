@@ -1,0 +1,491 @@
+/* ==========================================================================
+   10:16 AUTOMOTIVE HOMEPAGE STYLES (TACTICAL ARMY AESTHETIC)
+   ========================================================================== */
+
+/* HERO SECTION */
+.hero-section {
+    position: relative;
+    padding: 4.5rem 1.5rem 3.5rem 1.5rem;
+    background: radial-gradient(circle at 50% 20%, #202b22 0%, #111713 75%, #0b0e0c 100%);
+    border: 1px solid rgba(74, 93, 78, 0.4);
+    border-radius: 8px;
+    margin-bottom: 3.5rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(212, 154, 61, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 154, 61, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(212, 154, 61, 0.12);
+    border: 1px solid rgba(212, 154, 61, 0.45);
+    color: var(--brand-accent);
+    padding: 0.4rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    margin-bottom: 1.25rem;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #edf2ee;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.hero-subhead {
+    font-size: 1.05rem;
+    color: var(--brand-accent);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+}
+
+.hero-description {
+    max-width: 780px;
+    margin: 0 auto 2.25rem auto;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #c4d4c6;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+/* TRUST BADGES BAR */
+.trust-badges-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1rem;
+    border-top: 1px solid rgba(74, 93, 78, 0.35);
+    padding-top: 2rem;
+    text-align: left;
+}
+
+.trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    background: rgba(24, 34, 26, 0.6);
+    border: 1px solid rgba(74, 93, 78, 0.3);
+    padding: 0.85rem 1rem;
+    border-radius: 6px;
+    color: #d1ded3;
+}
+
+.trust-badge strong {
+    display: block;
+    font-size: 0.9rem;
+    color: #edf2ee;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.trust-badge span {
+    font-size: 0.78rem;
+    color: #a2b2a4;
+}
+
+/* SECTION HEADERS */
+.section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(212, 154, 61, 0.12);
+    border: 1px solid rgba(212, 154, 61, 0.35);
+    color: var(--brand-accent);
+    padding: 0.35rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+}
+
+.section-header h2 {
+    font-size: 2.25rem;
+    color: #edf2ee;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    color: #a2b2a4;
+    font-size: 1.05rem;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+/* PILLARS SECTION */
+.pillars-section-container {
+    margin-bottom: 4rem;
+}
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.75rem;
+}
+
+.pillar-card {
+    background: #18221a;
+    border: 1px solid rgba(74, 93, 78, 0.35);
+    border-radius: 8px;
+    padding: 2.25rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    position: relative;
+}
+
+.pillar-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--brand-accent);
+}
+
+.pillar-icon-box {
+    width: 60px;
+    height: 60px;
+    background: rgba(44, 62, 45, 0.5);
+    border: 1px solid rgba(212, 154, 61, 0.35);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-accent);
+    margin-bottom: 1.25rem;
+}
+
+.pillar-card h3 {
+    font-size: 1.35rem;
+    color: #edf2ee;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.pillar-card p {
+    font-size: 0.95rem;
+    color: #a2b2a4;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+.pillar-stat {
+    border-top: 1px solid rgba(74, 93, 78, 0.3);
+    padding-top: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+}
+
+.stat-highlight {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--brand-accent);
+}
+
+.stat-desc {
+    font-size: 0.78rem;
+    color: #c4d4c6;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* SIMULATOR SECTION */
+.simulator-section {
+    background: #151d17;
+    border: 1px solid rgba(74, 93, 78, 0.4);
+    border-radius: 8px;
+    padding: 3rem 2rem;
+    margin-bottom: 4rem;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+}
+
+.simulator-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.simulator-header h2 {
+    font-size: 2rem;
+    color: #edf2ee;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.simulator-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.tint-btn {
+    background: #1e2a21;
+    border: 1px solid rgba(74, 93, 78, 0.5);
+    color: #c4d4c6;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    transition: all 0.2s ease;
+    min-width: 105px;
+}
+
+.tint-btn .vlt {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #edf2ee;
+}
+
+.tint-btn .label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #a2b2a4;
+}
+
+.tint-btn:hover {
+    border-color: var(--brand-accent);
+    color: #fff;
+}
+
+.tint-btn.active {
+    background: #2a3d2e;
+    border-color: var(--brand-accent);
+    box-shadow: 0 0 15px rgba(212, 154, 61, 0.25);
+}
+
+.tint-btn.active .vlt {
+    color: var(--brand-accent);
+}
+
+.simulator-display {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+@media (max-width: 850px) {
+    .simulator-display {
+        grid-template-columns: 1fr;
+    }
+}
+
+.car-tint-preview {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(74, 93, 78, 0.4);
+    background: #0b0e0c;
+}
+
+.preview-base-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+}
+
+.tint-glass-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, var(--tint-opacity, 0.6));
+    pointer-events: none;
+    transition: background 0.3s ease;
+}
+
+.tint-vlt-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(13, 18, 15, 0.85);
+    border: 1px solid var(--brand-accent);
+    color: var(--brand-accent);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    border-radius: 4px;
+}
+
+.simulator-stats {
+    background: #18221a;
+    border: 1px solid rgba(74, 93, 78, 0.35);
+    padding: 1.75rem;
+    border-radius: 8px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(74, 93, 78, 0.2);
+    font-size: 0.95rem;
+}
+
+.stat-row .lbl {
+    color: #a2b2a4;
+}
+
+.stat-row .val {
+    color: #edf2ee;
+    font-weight: 700;
+}
+
+.text-gold {
+    color: var(--brand-accent) !important;
+}
+
+.text-green {
+    color: #4ade80 !important;
+}
+
+/* OUR STORY SECTION */
+.our-story-section {
+    background: #18221a;
+    border: 1px solid rgba(74, 93, 78, 0.35);
+    border-radius: 8px;
+    padding: 3.5rem 2.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+@media (max-width: 900px) {
+    .story-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.story-image-wrap {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid rgba(212, 154, 61, 0.35);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.story-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.story-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(13, 18, 15, 0.9);
+    border-left: 3px solid var(--brand-accent);
+    padding: 0.5rem 1rem;
+    border-radius: 0 4px 4px 0;
+}
+
+.story-badge .yr {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--brand-accent);
+    font-weight: 800;
+}
+
+.story-badge .cap {
+    font-size: 0.82rem;
+    color: #edf2ee;
+}
+
+.story-content h2 {
+    font-size: 2.25rem;
+    color: #edf2ee;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.25rem;
+}
+
+.story-quote {
+    background: rgba(13, 18, 15, 0.6);
+    border-left: 4px solid var(--brand-accent);
+    padding: 1.25rem 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #d1ded3;
+    font-style: italic;
+    margin: 0 0 1.25rem 0;
+    border-radius: 0 6px 6px 0;
+}
+
+.story-author {
+    color: #a2b2a4;
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+}
+
+.story-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.4rem;
+    }
+    .trust-badges-bar {
+        grid-template-columns: 1fr;
+    }
+}

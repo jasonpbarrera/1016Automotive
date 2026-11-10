@@ -1,0 +1,224 @@
+@page "/contact"
+@inject IOptions<BusinessSettings> BusinessConfig
+@inject IOptions<ContactPageSettings> ContactConfig
+@inject HttpClient Http
+
+<PageTitle>Request an Estimate &bull; Window Tint, Wraps &amp; Ceramic Protection | @BusinessConfig.Value.CompanyName</PageTitle>
+
+<div class="contact-container">
+    <!-- Left Side: Contact Info & Mission Dispatch -->
+    <div class="contact-info">
+        <div class="badge-tag">
+            <SharpIcon Name="crosshair" Size="16" />
+            <span>ESTIMATE REQUEST</span>
+        </div>
+        <h2>Direct Mission Inquiry</h2>
+        <p class="lead-txt">Submit your vehicle details below to receive a custom quote for Geoshield ceramic window tint, custom vinyl wraps, or System X 9H ceramic coatings.</p>
+
+        <div class="military-discount-card">
+            <div class="m-icon">
+                <SharpIcon Name="veteran-star" Size="24" />
+            </div>
+            <div>
+                <strong>10% Military &amp; First Responder Discount</strong>
+                <p>As a 6-year U.S. Army veteran-owned business, we proudly offer 10% off all tint, wrap, and ceramic protection services for active military, veterans, police, firefighters, and EMS.</p>
+            </div>
+        </div>
+
+        <div class="info-group">
+            <div class="info-item">
+                <span class="info-label">Shop Location</span>
+                <span class="info-val">Cleveland &amp; Bradley County, TN</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Primary Email</span>
+                <a href="mailto:@BusinessConfig.Value.PrimaryEmail" class="info-link">@BusinessConfig.Value.PrimaryEmail</a>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Direct Owner Contact</span>
+                <span class="info-val">Donny Bliss (Owner &amp; Lead Specialist)</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Turnaround Time</span>
+                <span class="info-val">Inquiries reviewed and answered within 24 hours</span>
+            </div>
+        </div>
+
+        <div class="social-links-block">
+            <span class="soc-label">Follow Builds on Socials:</span>
+            <div class="soc-row">
+                <a href="@BusinessConfig.Value.FacebookUrl" target="_blank" rel="noopener" class="soc-chip">
+                    <SharpIcon Name="facebook" Size="18" />
+                    <span>Facebook Page</span>
+                </a>
+                <a href="@BusinessConfig.Value.InstagramUrl" target="_blank" rel="noopener" class="soc-chip">
+                    <SharpIcon Name="instagram" Size="18" />
+                    <span>&#64;1016auto</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Side: The Form -->
+    <div class="contact-form-wrapper">
+        @if (isSubmitted)
+        {
+            <div class="success-message">
+                <div class="success-icon">
+                    <SharpIcon Name="check-circle" Size="48" />
+                </div>
+                <h3>Inquiry Dispatched Successfully</h3>
+                <p>Your vehicle specifications have been transmitted to Donny Bliss at 10:16 Automotive. We will review your project and contact you via your preferred method shortly.</p>
+                <button class="btn btn-tactical-outline" @onclick="ResetForm">Submit Another Inquiry</button>
+            </div>
+        }
+        else
+        {
+            <form @onsubmit="SubmitForm" class="custom-form">
+                <!-- Bot Protection Honeypot -->
+                <input type="text" @bind="botHoneypot" class="visually-hidden" tabindex="-1" autocomplete="off" />
+
+                @if (!string.IsNullOrWhiteSpace(errorMessage))
+                {
+                    <div class="error-banner" role="alert">
+                        @errorMessage
+                    </div>
+                }
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Full Name <span class="req">*</span></label>
+                        <input type="text" id="name" @bind="name" required placeholder="e.g. John Doe" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="req">*</span></label>
+                        <input type="tel" id="phone" @bind="phoneNumber" required placeholder="(423) 555-0123" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="req">*</span></label>
+                        <input type="email" id="email" @bind="email" required placeholder="name@example.com" />
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMethod">Preferred Contact Method</label>
+                        <select id="contactMethod" @bind="contactMethod" required>
+                            <option value="">Select...</option>
+                            @foreach (var method in ContactConfig.Value.ContactMethods)
+                            {
+                                <option value="@method">@method</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="serviceType">Primary Service Desired <span class="req">*</span></label>
+                        <select id="serviceType" @bind="serviceType" required>
+                            <option value="">Select Service...</option>
+                            @foreach (var option in ContactConfig.Value.ServiceOptions)
+                            {
+                                <option value="@option">@option</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">Target Timeframe</label>
+                        <input type="date" id="startDate" @bind="startDate" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Vehicle Details &amp; Build Scope <span class="req">*</span></label>
+                    <textarea id="message" @bind="message" required rows="4" placeholder="Please provide your Vehicle Year, Make, Model, and specific tint shade or wrap details (e.g. 2024 Ford F-150, 20% Geoshield ceramic front doors, military veteran discount)..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-tactical-gold btn-block" disabled="@isSubmitting">
+                    <SharpIcon Name="crosshair" Size="18" />
+                    <span>@(isSubmitting ? "Dispatching Inquiry..." : "Submit Quote Request")</span>
+                </button>
+            </form>
+        }
+    </div>
+</div>
+
+@code {
+    private string name = "";
+    private string phoneNumber = "";
+    private string email = "";
+    private string contactMethod = "Phone Call";
+    private string serviceType = "Geoshield Ceramic Window Tint";
+    private DateTime? startDate = null;
+    private string message = "";
+    private string botHoneypot = "";
+    private string? errorMessage = null;
+
+    private bool isSubmitted = false;
+    private bool isSubmitting = false;
+
+    private async Task SubmitForm()
+    {
+        isSubmitting = true;
+        errorMessage = null;
+
+        // Bot trap: If filled, fake a successful submission and exit
+        if (!string.IsNullOrEmpty(botHoneypot))
+        {
+            isSubmitted = true;
+            isSubmitting = false;
+            return;
+        }
+
+        var payload = new LeadSubmissionRequest
+        {
+            BusinessId = BusinessConfig.Value.BusinessId,
+            CompanyName = BusinessConfig.Value.CompanyName,
+            Name = name,
+            Phone = phoneNumber,
+            Email = email,
+            PreferredContactMethod = contactMethod,
+            ServiceType = serviceType,
+            PreferredStartDate = startDate?.ToString("yyyy-MM-dd"),
+            Message = message,
+            Honeypot = botHoneypot
+        };
+
+        try
+        {
+            var response = await Http.PostAsJsonAsync(ContactConfig.Value.ApiEndpoint, payload);
+            if (response.IsSuccessStatusCode)
+            {
+                isSubmitted = true;
+            }
+            else
+            {
+                errorMessage = "We could not submit your request automatically right now. Please email us directly at " + BusinessConfig.Value.PrimaryEmail + ".";
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Submission failed: {ex.Message}");
+            errorMessage = "Network error while sending your message. Please email us directly at " + BusinessConfig.Value.PrimaryEmail + ".";
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+
+    private void ResetForm()
+    {
+        name = "";
+        phoneNumber = "";
+        email = "";
+        contactMethod = "Phone Call";
+        serviceType = "Geoshield Ceramic Window Tint";
+        startDate = null;
+        message = "";
+        botHoneypot = "";
+        errorMessage = null;
+        isSubmitted = false;
+    }
+}

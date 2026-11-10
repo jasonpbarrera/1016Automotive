@@ -1,0 +1,149 @@
+@page "/socials"
+@inject IOptions<BusinessSettings> BusinessConfig
+
+<PageTitle>Socials & Feeds | @BusinessConfig.Value.CompanyName</PageTitle>
+
+<div class="socials-page-container">
+    <!-- PAGE HERO -->
+    <div class="socials-hero">
+        <div class="badge-tag">
+            <SharpIcon Name="crosshair" Size="16" />
+            <span>COMMUNITY & SOCIAL RADAR</span>
+        </div>
+        <h1>Follow Our Missions</h1>
+        <p class="lead-text">Stay locked in with daily build progress, before-and-after transformations, shop expansions, and behind-the-scenes tint and wrap craftsmanship right from our Cleveland, TN shop.</p>
+    </div>
+
+    <!-- SOCIAL PLATFORMS GRID -->
+    <div class="platforms-grid">
+        <!-- FACEBOOK CARD -->
+        <div class="social-card facebook-card">
+            <div class="card-top">
+                <div class="platform-icon-wrap fb-icon">
+                    <SharpIcon Name="facebook" Size="24" />
+                </div>
+                <div class="platform-status">
+                    <span class="live-pulse"></span>
+                    <span>Active Page</span>
+                </div>
+            </div>
+
+            <div class="profile-header">
+                <img src="images/shop-profile-logo.jpg" alt="10:16 Automotive Facebook" class="profile-avatar" />
+                <div class="profile-meta">
+                    <h3>10:16 Automotive</h3>
+                    <p class="handle">&#64;61584622472913 &bull; Cleveland, TN</p>
+                    <div class="stat-badges">
+                        <span class="stat-badge">36+ Followers</span>
+                        <span class="stat-badge">6 Talking About This</span>
+                        <span class="stat-badge">Automotive Cosmetic Specialist</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bio-box">
+                <p>"Located in Cleveland, TN. We specialize in color change wraps, window tint, detailing and ceramic coatings."</p>
+            </div>
+
+            <div class="recent-drop-banner">
+                <span class="tag">LATEST UPDATE</span>
+                <p>New ceramic tint & System X installations completed in the bay under full hex inspection lights! Check out recent customer trucks and EV tint transformations.</p>
+            </div>
+
+            <div class="platform-photos-preview">
+                <div class="preview-thumb">
+                    <img src="images/showcase-superduty-camo.jpg" alt="Camo Super Duty" />
+                </div>
+                <div class="preview-thumb">
+                    <img src="images/real-work-copper-ford-bay.jpg" alt="Copper Ford SUV" />
+                </div>
+                <div class="preview-thumb">
+                    <img src="images/real-work-black-superduty.jpg" alt="Black Super Duty" />
+                </div>
+            </div>
+
+            <div class="card-actions">
+                <a href="@BusinessConfig.Value.FacebookUrl" target="_blank" rel="noopener" class="btn btn-facebook">
+                    <SharpIcon Name="facebook" Size="18" />
+                    <span>Follow on Facebook</span>
+                </a>
+                <a href="@BusinessConfig.Value.FacebookUrl" target="_blank" rel="noopener" class="btn btn-tactical-outline">
+                    <span>View FB Photo Gallery &rarr;</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- INSTAGRAM CARD -->
+        <div class="social-card instagram-card">
+            <div class="card-top">
+                <div class="platform-icon-wrap ig-icon">
+                    <SharpIcon Name="instagram" Size="24" />
+                </div>
+                <div class="platform-status">
+                    <span class="live-pulse ig-pulse"></span>
+                    <span>Active Drops</span>
+                </div>
+            </div>
+
+            <div class="profile-header">
+                <img src="images/shop-profile-logo.jpg" alt="10:16 Automotive Instagram" class="profile-avatar" />
+                <div class="profile-meta">
+                    <h3>10:16 Automotive</h3>
+                    <p class="handle">&#64;1016auto &bull; Instagram</p>
+                    <div class="stat-badges">
+                        <span class="stat-badge">47 Posts</span>
+                        <span class="stat-badge">62 Followers</span>
+                        <span class="stat-badge">26 Following</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bio-box">
+                <p>"We did a little travel work recently while on vacation. You know we had to hook up our friends with a little tint. Both trucks got 20% ceramic installed on the front two."</p>
+            </div>
+
+            <div class="recent-drop-banner ig-drop">
+                <span class="tag">FIELD LOG</span>
+                <p>Geoshield ceramic window tint drops, custom wrap styling, and paint correction highlights. Tag us with <strong>#1016Auto</strong> to be featured!</p>
+            </div>
+
+            <div class="platform-photos-preview">
+                <div class="preview-thumb">
+                    <img src="images/real-work-tesla-ceramic-tint.jpg" alt="Tesla Ceramic Tint" />
+                </div>
+                <div class="preview-thumb">
+                    <img src="images/real-work-grandcherokee-white.jpg" alt="Jeep Grand Cherokee" />
+                </div>
+                <div class="preview-thumb">
+                    <img src="images/real-work-expedition-silver.jpg" alt="Silver Expedition" />
+                </div>
+            </div>
+
+            <div class="card-actions">
+                <a href="@BusinessConfig.Value.InstagramUrl" target="_blank" rel="noopener" class="btn btn-instagram">
+                    <SharpIcon Name="instagram" Size="18" />
+                    <span>Follow &#64;1016auto on Instagram</span>
+                </a>
+                <a href="@BusinessConfig.Value.InstagramUrl" target="_blank" rel="noopener" class="btn btn-tactical-outline">
+                    <span>View Reels &amp; Stories &rarr;</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMMUNITY HASHTAG BANNER -->
+    <div class="community-banner">
+        <div class="banner-icon">
+            <SharpIcon Name="crosshair" Size="32" />
+        </div>
+        <div class="banner-body">
+            <h3>Get Your Build Featured on Our Feeds</h3>
+            <p>Had your vehicle tinted, wrapped, or ceramic protected by 10:16 Automotive? Snap a photo in sunlight, tag <strong>&#64;1016auto</strong> on Instagram or post on our Facebook page using the hashtag <strong>#1016Auto</strong>. We proudly highlight our clients and their rides!</p>
+        </div>
+        <div class="banner-cta">
+            <a href="/contact" class="btn btn-tactical-gold">
+                <span>Book Your Build Today</span>
+            </a>
+        </div>
+    </div>
+</div>

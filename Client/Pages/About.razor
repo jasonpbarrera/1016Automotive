@@ -1,0 +1,139 @@
+@page "/about"
+@inject IOptions<BusinessSettings> BusinessConfig
+@inject IOptions<AboutPageSettings> AboutConfig
+
+<PageTitle>About Donny Bliss &bull; 6-Year Army Veteran | @BusinessConfig.Value.CompanyName</PageTitle>
+
+<div class="about-container">
+    <!-- PAGE HERO -->
+    <div class="about-hero">
+        <div class="badge-tag">
+            <SharpIcon Name="veteran-star" Size="16" />
+            <span>FOUNDER &bull; 6-YEAR U.S. ARMY VETERAN</span>
+        </div>
+        <h1>Discipline In Every Detail</h1>
+        <p class="lead-text">10:16 Automotive is founded and operated by Donny Bliss—bringing military standards of precision, accountability, and integrity to automotive cosmetics across Cleveland and Southeast Tennessee.</p>
+    </div>
+
+    <!-- MAIN STORY PROFILE -->
+    <div class="founder-profile-grid">
+        <div class="profile-media-stack">
+            <div class="main-photo-frame">
+                <img src="images/real-work-copper-ford-bay.jpg" alt="10:16 Automotive Detailing Bay with Donny's Geoshield & System X Banners" />
+                <div class="frame-tag">
+                    <span class="pulse-dot"></span>
+                    <span>10:16 Precision Clean Bay</span>
+                </div>
+            </div>
+            <div class="sub-photos-row">
+                <div class="sub-photo-frame">
+                    <img src="images/showcase-superduty-camo.jpg" alt="Camo Super Duty with Military Star" />
+                </div>
+                <div class="sub-photo-frame">
+                    <img src="images/real-work-black-superduty.jpg" alt="Black Super Duty Ceramic Tint" />
+                </div>
+            </div>
+        </div>
+
+        <div class="founder-bio-card">
+            <div class="bio-header">
+                <h3>Donny Bliss</h3>
+                <span class="bio-role">Founder, Lead Specialist &bull; 6-Year U.S. Army Veteran</span>
+            </div>
+
+            <div class="quote-callout">
+                &ldquo;My business is 10:16 automotive. I own and operate a window tint and automotive cosmetic company. We primarily do window tint, wraps and ceramic coatings. I’ve been in this business since 2020; this company was formed January of this year. We are partnered with and certified through System X ceramic protections and Geoshield is our primary tint supplier. I’m hoping to move from my home shop to a full shop this coming year pending growth of the company.&rdquo;
+            </div>
+
+            <div class="bio-bullets">
+                <div class="bullet-item">
+                    <div class="bullet-icon">
+                        <SharpIcon Name="veteran-star" Size="20" />
+                    </div>
+                    <div>
+                        <strong>6 Years Military Service</strong>
+                        <p>Serving in the United States Army taught Donny that preparation, process, and zero compromise separate good work from elite work. That exact discipline is applied to every tint installation and wrap edge.</p>
+                    </div>
+                </div>
+
+                <div class="bullet-item">
+                    <div class="bullet-icon">
+                        <SharpIcon Name="diamond-ceramic" Size="20" />
+                    </div>
+                    <div>
+                        <strong>System X Certified Installer</strong>
+                        <p>Trained and certified to apply System X 9H professional nano-ceramic protection systems, delivering factory-backed ceramic warranties and liquid-mirror gloss retention.</p>
+                    </div>
+                </div>
+
+                <div class="bullet-item">
+                    <div class="bullet-icon">
+                        <SharpIcon Name="sun-tint" Size="20" />
+                    </div>
+                    <div>
+                        <strong>Geoshield Primary Tint Supplier</strong>
+                        <p>Partnered with Geoshield for industry-leading nano-ceramic window films engineered for maximum heat rejection, 99.9% UV deflection, and lifetime color stability.</p>
+                    </div>
+                </div>
+
+                <div class="bullet-item">
+                    <div class="bullet-icon">
+                        <SharpIcon Name="crosshair" Size="20" />
+                    </div>
+                    <div>
+                        <strong>From Home Shop to Commercial Facility</strong>
+                        <p>Operating since 2020 and officially incorporating 10:16 Automotive in January 2026, Donny is actively expanding operations toward a dedicated commercial storefront in Bradley County.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CORE VALUES BANNER -->
+    <div class="values-tactical-strip">
+        <div class="val-item">
+            <SharpIcon Name="crosshair" Size="24" />
+            <div>
+                <h4>PRECISION</h4>
+                <p>Micro-edge hand trimming and seamless tucking</p>
+            </div>
+        </div>
+        <div class="val-item">
+            <SharpIcon Name="shield-tactical" Size="24" />
+            <div>
+                <h4>INTEGRITY</h4>
+                <p>Honest recommendations with zero overselling</p>
+            </div>
+        </div>
+        <div class="val-item">
+            <SharpIcon Name="diamond-ceramic" Size="24" />
+            <div>
+                <h4>PROTECTION</h4>
+                <p>Certified 9H ceramics &amp; 99% UV defense films</p>
+            </div>
+        </div>
+        <div class="val-item">
+            <SharpIcon Name="veteran-star" Size="24" />
+            <div>
+                <h4>HONOR</h4>
+                <p>10% discount for military &amp; first responders</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CALL TO ACTION -->
+    <div class="about-cta-section">
+        <h3>Ready to Work With a Veteran-Owned Specialist?</h3>
+        <p>Whether you need cabin heat relief in the Tennessee summer, full paint protection against rock chips, or custom styling that turns heads, Donny will treat your vehicle like his own.</p>
+        <div class="cta-buttons">
+            <a href="/contact" class="btn btn-tactical-gold">
+                <SharpIcon Name="crosshair" Size="18" />
+                <span>Request Your Free Estimate</span>
+            </a>
+            <a href="/socials" class="btn btn-tactical-outline">
+                <SharpIcon Name="facebook" Size="18" />
+                <span>Check Out Recent Builds on Socials</span>
+            </a>
+        </div>
+    </div>
+</div>

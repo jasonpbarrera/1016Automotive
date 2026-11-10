@@ -1,0 +1,132 @@
+@inherits LayoutComponentBase
+@inject IOptions<BusinessSettings> BusinessConfig
+@inject IOptions<ThemeSettings> ThemeConfig
+@inject IOptions<AboutPageSettings> AboutConfig
+
+<div class="page" style="--brand-primary: @ThemeConfig.Value.PrimaryColor; --brand-accent: @ThemeConfig.Value.AccentColor; --brand-surface: @ThemeConfig.Value.SurfaceColor; --brand-bg: @ThemeConfig.Value.BackgroundColor;">
+    <!-- TOP TACTICAL NOTIFICATION BAR -->
+    <div class="veteran-strip">
+        <div class="strip-content">
+            <span class="star-badge">&#9733;</span>
+            <span class="strip-text"><strong>VETERAN-OWNED &amp; OPERATED</strong> &bull; 6-YEAR U.S. ARMY VETERAN &bull; CLEVELAND, TN &bull; SYSTEM X CERTIFIED &amp; GEOSHIELD SUPPLIER &bull; 10% MILITARY &amp; FIRST RESPONDER DISCOUNT</span>
+            <span class="star-badge">&#9733;</span>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="site-header">
+        <div class="header-top-bar">
+            <div class="location-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Cleveland &amp; Bradley County, TN</span>
+            </div>
+            <div class="contact-links">
+                @if (!string.IsNullOrWhiteSpace(BusinessConfig.Value.PhoneNumber))
+                {
+                    <a href="tel:@BusinessConfig.Value.PhoneNumber" class="top-link">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <span>@BusinessConfig.Value.PhoneNumber</span>
+                    </a>
+                }
+                <a href="mailto:@BusinessConfig.Value.PrimaryEmail" class="top-link">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <span>@BusinessConfig.Value.PrimaryEmail</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="navbar">
+            <div class="brand-container">
+                <a class="navbar-brand" href="/">
+                    <img src="@BusinessConfig.Value.LogoUrl" alt="@BusinessConfig.Value.CompanyName" class="brand-crest-logo" />
+                </a>
+                <div class="brand-text-block">
+                    <span class="brand-company">@BusinessConfig.Value.CompanyName</span>
+                    <span class="brand-tagline">@BusinessConfig.Value.Tagline</span>
+                </div>
+            </div>
+
+            <nav class="main-navigation">
+                <NavLink href="/" Match="NavLinkMatch.All">Home</NavLink>
+                <NavLink href="/about">About &bull; Founder</NavLink>
+                <NavLink href="/services">Services</NavLink>
+                <NavLink href="/socials">Socials &amp; Feeds</NavLink>
+                <NavLink href="/contact" class="nav-quote-btn">Get Quote</NavLink>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        @Body
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="footer-logo-row">
+                    <img src="@BusinessConfig.Value.LogoUrl" alt="@BusinessConfig.Value.CompanyName" class="footer-crest-logo" />
+                    <div>
+                        <h3>@BusinessConfig.Value.CompanyName</h3>
+                        <p class="tagline">@BusinessConfig.Value.Tagline</p>
+                    </div>
+                </div>
+                <p class="bio-snippet">Founded by 6-year U.S. Army veteran Donny Bliss. In the automotive cosmetic business since 2020. Certified System X ceramic protection installer and authorized Geoshield window film dealer serving Cleveland and Southeast Tennessee.</p>
+                <div class="certification-badges">
+                    <span class="cert-pill">System X Certified</span>
+                    <span class="cert-pill">Geoshield Primary Partner</span>
+                    <span class="cert-pill">Veteran-Owned</span>
+                </div>
+            </div>
+
+            <div class="footer-nav">
+                <h4>Tactical Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="/">Home Mission</a></li>
+                    <li><a href="/about">About &amp; Military Service</a></li>
+                    <li><a href="/services">Window Tint, Wraps &amp; Coatings</a></li>
+                    <li><a href="/socials">Social Feeds (FB &amp; IG)</a></li>
+                    <li><a href="/contact">Direct Quote Request</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Command &amp; Dispatch</h4>
+                <p class="location-txt">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Cleveland, TN (Bradley County)
+                </p>
+                @if (!string.IsNullOrWhiteSpace(BusinessConfig.Value.PhoneNumber))
+                {
+                    <a href="tel:@BusinessConfig.Value.PhoneNumber" class="contact-link">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        @BusinessConfig.Value.PhoneNumber
+                    </a><br />
+                }
+                <a href="mailto:@BusinessConfig.Value.PrimaryEmail" class="contact-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    @BusinessConfig.Value.PrimaryEmail
+                </a>
+
+                <div class="social-links">
+                    @if (!string.IsNullOrWhiteSpace(BusinessConfig.Value.FacebookUrl))
+                    {
+                        <a href="@BusinessConfig.Value.FacebookUrl" target="_blank" rel="noopener" aria-label="Facebook Profile" class="soc-btn fb">
+                            <SharpIcon Name="facebook" Size="18" />
+                        </a>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(BusinessConfig.Value.InstagramUrl))
+                    {
+                        <a href="@BusinessConfig.Value.InstagramUrl" target="_blank" rel="noopener" aria-label="Instagram Profile" class="soc-btn ig">
+                            <SharpIcon Name="instagram" Size="18" />
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; @DateTime.Now.Year @BusinessConfig.Value.CompanyName. All rights reserved. &bull; Veteran-Owned &amp; Operated &bull; Formed January 2026 &bull; Managed on JB Digital Services Platform</p>
+        </div>
+    </footer>
+</div>

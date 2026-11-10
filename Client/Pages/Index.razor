@@ -1,0 +1,279 @@
+@page "/"
+@inject IOptions<BusinessSettings> BusinessConfig
+@inject IOptions<HomePageSettings> HomeConfig
+
+<PageTitle>@BusinessConfig.Value.CompanyName | Veteran-Owned Automotive Tint, Wraps & Ceramic Protection Cleveland TN</PageTitle>
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <SharpIcon Name="veteran-star" Size="16" />
+            <span>6-YEAR U.S. ARMY VETERAN OWNED &bull; CLEVELAND, TN</span>
+        </div>
+        <h1 class="hero-title">10:16 AUTOMOTIVE</h1>
+        <p class="hero-subhead">PRECISION WINDOW TINT &bull; CUSTOM VINYL WRAPS &bull; SYSTEM X CERAMIC COATINGS</p>
+        <p class="hero-description">
+            Veteran-engineered automotive cosmetic craft in Cleveland and Bradley County, Tennessee. Partnered with and certified through <strong>System X Ceramic Protections</strong> and using <strong>Geoshield</strong> as our primary tint supplier for uncompromising durability.
+        </p>
+
+        <div class="hero-actions">
+            <a href="/contact" class="btn btn-tactical-gold">
+                <SharpIcon Name="crosshair" Size="18" />
+                <span>Request a Free Quote</span>
+            </a>
+            <a href="/services" class="btn btn-tactical-outline">
+                <SharpIcon Name="shield-tactical" Size="18" />
+                <span>View Tint &amp; Wrap Services</span>
+            </a>
+        </div>
+
+        <!-- TRUST BADGES ROW -->
+        <div class="trust-badges-bar">
+            <div class="trust-badge">
+                <SharpIcon Name="diamond-ceramic" Size="20" />
+                <div>
+                    <strong>System X Certified</strong>
+                    <span>9H Nano-Ceramic Protection</span>
+                </div>
+            </div>
+            <div class="trust-badge">
+                <SharpIcon Name="sun-tint" Size="20" />
+                <div>
+                    <strong>Geoshield Tint Supplier</strong>
+                    <span>99% UV &amp; Infrared Heat Deflection</span>
+                </div>
+            </div>
+            <div class="trust-badge">
+                <SharpIcon Name="veteran-star" Size="20" />
+                <div>
+                    <strong>6-Year Army Veteran</strong>
+                    <span>10% Military &amp; First Responder Discount</span>
+                </div>
+            </div>
+            <div class="trust-badge">
+                <SharpIcon Name="crosshair" Size="20" />
+                <div>
+                    <strong>Operating Since 2020</strong>
+                    <span>Expanding to Full Commercial Shop</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CENTRAL WORK SHOWCASE (Marquee & Photo Directory) -->
+<WorkShowcase />
+
+<!-- CORE PILLARS SECTION (SHARP TACTICAL ICONS) -->
+<section class="pillars-section-container">
+    <div class="section-header">
+        <div class="badge-tag">
+            <SharpIcon Name="shield-tactical" Size="16" />
+            <span>TACTICAL STANDARDS</span>
+        </div>
+        <h2>Engineering Standards Built on Military Discipline</h2>
+        <p class="section-subtitle">No soft shortcuts. We apply military-grade precision to every cut, squeegee stroke, and ceramic cure.</p>
+    </div>
+
+    <div class="pillars-grid">
+        <div class="pillar-card">
+            <div class="pillar-icon-box">
+                <SharpIcon Name="sun-tint" Size="32" />
+            </div>
+            <h3>Geoshield Precision Window Tint</h3>
+            <p>High-performance ceramic and carbon films that block 99% of harmful UVA/UVB rays and deflect up to 88% of solar infrared heat. Single-piece rear glass shrinks with hand-trimmed micro-edges.</p>
+            <div class="pillar-stat">
+                <span class="stat-highlight">99%</span>
+                <span class="stat-desc">UV Ray Rejection</span>
+            </div>
+        </div>
+
+        <div class="pillar-card">
+            <div class="pillar-icon-box">
+                <SharpIcon Name="vinyl-wrap" Size="32" />
+            </div>
+            <h3>Custom Vinyl Wraps &amp; Accents</h3>
+            <p>From full body color changes in matte, satin, or gloss to custom camouflage and commercial fleet graphics. Seamless disassembly of trims and handles for factory-paint-level fitment.</p>
+            <div class="pillar-stat">
+                <span class="stat-highlight">100%</span>
+                <span class="stat-desc">Reversible Paint Protection</span>
+            </div>
+        </div>
+
+        <div class="pillar-card">
+            <div class="pillar-icon-box">
+                <SharpIcon Name="diamond-ceramic" Size="32" />
+            </div>
+            <h3>Certified System X Ceramic Coatings</h3>
+            <p>Authorized installer of System X 9H quartz coatings. Cures into an ultra-dense, glass-like hydrophobic shield that repels rain, road salts, brake dust, and prevents clear coat oxidation.</p>
+            <div class="pillar-stat">
+                <span class="stat-highlight">9H</span>
+                <span class="stat-desc">Pencil Hardness Shield</span>
+            </div>
+        </div>
+
+        <div class="pillar-card">
+            <div class="pillar-icon-box">
+                <SharpIcon Name="veteran-star" Size="32" />
+            </div>
+            <h3>6-Year Veteran Craftsmanship</h3>
+            <p>Donny Bliss brings 6 years of U.S. Army service values—integrity, mission accountability, and high-standard discipline—to every project in the shop. Honoring those who serve with a 10% discount.</p>
+            <div class="pillar-stat">
+                <span class="stat-highlight">10% OFF</span>
+                <span class="stat-desc">Military &amp; First Responders</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INTERACTIVE WINDOW TINT SHADE SIMULATOR -->
+<section class="simulator-section">
+    <div class="simulator-inner">
+        <div class="simulator-header">
+            <div class="badge-tag">
+                <SharpIcon Name="sun-tint" Size="16" />
+                <span>GEOSHIELD TINT LAB</span>
+            </div>
+            <h2>Interactive Window Tint Shade Selector</h2>
+            <p>Explore legal and cosmetic tint options powered by Geoshield nano-ceramic film technology.</p>
+        </div>
+
+        <div class="simulator-controls">
+            <button class="tint-btn @(selectedShade == 5 ? "active" : "")" @onclick="() => SelectShade(5)">
+                <span class="vlt">5%</span>
+                <span class="label">Limo Stealth</span>
+            </button>
+            <button class="tint-btn @(selectedShade == 20 ? "active" : "")" @onclick="() => SelectShade(20)">
+                <span class="vlt">20%</span>
+                <span class="label">Dark Match</span>
+            </button>
+            <button class="tint-btn @(selectedShade == 35 ? "active" : "")" @onclick="() => SelectShade(35)">
+                <span class="vlt">35%</span>
+                <span class="label">TN Legal Net</span>
+            </button>
+            <button class="tint-btn @(selectedShade == 50 ? "active" : "")" @onclick="() => SelectShade(50)">
+                <span class="vlt">50%</span>
+                <span class="label">Medium Smoke</span>
+            </button>
+            <button class="tint-btn @(selectedShade == 70 ? "active" : "")" @onclick="() => SelectShade(70)">
+                <span class="vlt">70%</span>
+                <span class="label">Clear Ceramic</span>
+            </button>
+        </div>
+
+        <div class="simulator-display">
+            <div class="car-tint-preview" style="--tint-opacity: @ShadeOpacity;">
+                <img src="images/real-work-expedition-side.jpg" alt="Tint Preview Vehicle" class="preview-base-img" />
+                <div class="tint-glass-overlay"></div>
+                <div class="tint-vlt-badge">@selectedShade% VLT CERAMIC</div>
+            </div>
+
+            <div class="simulator-stats">
+                <div class="stat-row">
+                    <span class="lbl">Visible Light Transmission (VLT):</span>
+                    <span class="val">@selectedShade%</span>
+                </div>
+                <div class="stat-row">
+                    <span class="lbl">Infrared Heat Rejection (IR):</span>
+                    <span class="val text-gold">@HeatRejection%</span>
+                </div>
+                <div class="stat-row">
+                    <span class="lbl">Ultraviolet (UV) Radiation Defense:</span>
+                    <span class="val text-green">99.9%</span>
+                </div>
+                <div class="stat-row">
+                    <span class="lbl">Glare Reduction:</span>
+                    <span class="val">@GlareReduction%</span>
+                </div>
+                <div class="stat-row">
+                    <span class="lbl">Recommended Use:</span>
+                    <span class="val">@ShadeUsage</span>
+                </div>
+                <a href="/contact" class="btn btn-tactical-gold btn-block" style="margin-top: 1rem;">
+                    <span>Book @selectedShade% Geoshield Installation</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOUNDER STORY & SHOP EXPANSION -->
+<section class="our-story-section">
+    <div class="container story-grid">
+        <div class="story-image-wrap">
+            <img src="images/real-work-copper-ford-bay.jpg" alt="Donny Bliss 10:16 Automotive Detailing Bay" />
+            <div class="story-badge">
+                <span class="yr">2020 &ndash; Present</span>
+                <span class="cap">Cleveland, TN Facility</span>
+            </div>
+        </div>
+        <div class="story-content">
+            <div class="badge-tag">
+                <SharpIcon Name="veteran-star" Size="16" />
+                <span>IN HIS OWN WORDS</span>
+            </div>
+            <h2>The 10:16 Automotive Mission</h2>
+            <blockquote class="story-quote">
+                &ldquo;My business is 10:16 automotive. I own and operate a window tint and automotive cosmetic company. We primarily do window tint, wraps and ceramic coatings. I’ve been in this business since 2020; this company was formed January of this year. We are partnered with and certified through System X ceramic protections and Geoshield is our primary tint supplier. I’m hoping to move from my home shop to a full shop this coming year pending growth of the company.&rdquo;
+            </blockquote>
+            <p class="story-author">&mdash; <strong>Donny Bliss</strong>, Owner &bull; 6-Year U.S. Army Veteran</p>
+            <div class="story-actions">
+                <a href="/about" class="btn btn-tactical-outline">
+                    <span>Read Donny's Full Story &rarr;</span>
+                </a>
+                <a href="/socials" class="btn btn-tactical-gold">
+                    <SharpIcon Name="crosshair" Size="16" />
+                    <span>Follow Our Journey on Socials</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private int selectedShade = 20;
+
+    private void SelectShade(int shade) => selectedShade = shade;
+
+    private double ShadeOpacity => selectedShade switch
+    {
+        5 => 0.88,
+        20 => 0.72,
+        35 => 0.54,
+        50 => 0.38,
+        70 => 0.18,
+        _ => 0.70
+    };
+
+    private int HeatRejection => selectedShade switch
+    {
+        5 => 88,
+        20 => 82,
+        35 => 76,
+        50 => 68,
+        70 => 58,
+        _ => 80
+    };
+
+    private int GlareReduction => selectedShade switch
+    {
+        5 => 94,
+        20 => 82,
+        35 => 65,
+        50 => 48,
+        70 => 24,
+        _ => 80
+    };
+
+    private string ShadeUsage => selectedShade switch
+    {
+        5 => "Maximum privacy for rear windows, cargo areas & commercial vehicles.",
+        20 => "Closest match to factory rear privacy glass. Excellent heat rejection.",
+        35 => "Tennessee legal standard for front side glass. Clear night visibility.",
+        50 => "Light smoke tint. High heat rejection with subtle darkening.",
+        70 => "Virtually clear ceramic windshield barrier for heat and UV defense.",
+        _ => "Standard automotive tint application."
+    };
+}

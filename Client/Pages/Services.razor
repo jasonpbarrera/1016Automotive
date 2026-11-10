@@ -1,0 +1,155 @@
+@page "/services"
+@inject IOptions<BusinessSettings> BusinessConfig
+@inject IOptions<ServicesPageSettings> ServicesConfig
+
+<PageTitle>Services &bull; Window Tint, Wraps &amp; Ceramic Coatings | @BusinessConfig.Value.CompanyName</PageTitle>
+
+<div class="services-container">
+    <!-- HERO HEADER -->
+    <div class="services-hero">
+        <div class="badge-tag">
+            <SharpIcon Name="crosshair" Size="16" />
+            <span>SPECIALIZED AUTOMOTIVE COSMETICS</span>
+        </div>
+        <h1>Engineered Cosmetic Capabilities</h1>
+        <p class="lead-text">Precision window tinting, custom vinyl wraps, and certified System X ceramic protection installed with military discipline in Cleveland, TN.</p>
+    </div>
+
+    <!-- SERVICES CARDS -->
+    <div class="services-detail-grid">
+        <!-- 1. WINDOW TINT -->
+        <div class="service-block">
+            <div class="service-media">
+                <img src="images/real-work-black-superduty.jpg" alt="Super Duty Ceramic Window Tint" />
+                <span class="service-badge">GEOSHIELD PARTNER</span>
+            </div>
+            <div class="service-info">
+                <div class="service-icon-row">
+                    <div class="service-icon">
+                        <SharpIcon Name="sun-tint" Size="26" />
+                    </div>
+                    <div>
+                        <h3>Geoshield Precision Window Tint</h3>
+                        <span class="service-sub">Ceramic &amp; Carbon Heat Rejection Films</span>
+                    </div>
+                </div>
+                <p>We install premium Geoshield automotive window films designed for maximum heat rejection, glare reduction, and cabin privacy. Every piece of glass is computer-cut and hand-finished with seamless micro-edges.</p>
+                <div class="feature-bullets">
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>99.9% UV Block:</strong> Deflects damaging solar radiation that fades interiors and damages skin.</span></div>
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Infrared Heat Rejection:</strong> Up to 88% reduction in solar heat entering the cabin.</span></div>
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Non-Conductive Ceramic:</strong> Zero interference with cell phone, GPS, or keyless signals.</span></div>
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Shade Options:</strong> 5% (Limo), 20% (Factory Match), 35% (TN Legal), 50% &amp; 70% Clear.</span></div>
+                </div>
+                <div class="service-footer">
+                    <a href="/contact" class="btn btn-tactical-gold btn-sm">Get Tint Quote</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. VINYL WRAPS -->
+        <div class="service-block">
+            <div class="service-media">
+                <img src="images/showcase-superduty-camo.jpg" alt="Custom Camo Vinyl Wrap on Super Duty" />
+                <span class="service-badge">CUSTOM CRAFTSMANSHIP</span>
+            </div>
+            <div class="service-info">
+                <div class="service-icon-row">
+                    <div class="service-icon">
+                        <SharpIcon Name="vinyl-wrap" Size="26" />
+                    </div>
+                    <div>
+                        <h3>Custom Color Change &amp; Camo Wraps</h3>
+                        <span class="service-sub">Full Vehicle Wraps, Accents &amp; Chrome Deletes</span>
+                    </div>
+                </div>
+                <p>Transform the appearance of your truck, sports car, or daily driver with premium cast vinyl. We handle proper disassembly of handles, moldings, and badges for a paint-like tucked finish that protects the factory clear coat underneath.</p>
+                <div class="feature-bullets">
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Full Color Change:</strong> Satin, matte, gloss, metallic, and textured finishes.</span></div>
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Tactical Military Patterns:</strong> Custom digital and multi-cam wraps engineered to order.</span></div>
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Chrome Deletes:</strong> Blackout packages for window trim, grilles, and emblems.</span></div>
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>100% Reversible:</strong> Keeps OEM paint pristine for future resale value.</span></div>
+                </div>
+                <div class="service-footer">
+                    <a href="/contact" class="btn btn-tactical-gold btn-sm">Get Wrap Quote</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. CERAMIC COATINGS -->
+        <div class="service-block">
+            <div class="service-media">
+                <img src="images/real-work-tesla-ceramic-tint.jpg" alt="Tesla System X Ceramic Coating" />
+                <span class="service-badge">SYSTEM X CERTIFIED</span>
+            </div>
+            <div class="service-info">
+                <div class="service-icon-row">
+                    <div class="service-icon">
+                        <SharpIcon Name="diamond-ceramic" Size="26" />
+                    </div>
+                    <div>
+                        <h3>Certified System X Ceramic Protection</h3>
+                        <span class="service-sub">9H Professional Quartz Armor &amp; Extreme Hydrophobics</span>
+                    </div>
+                </div>
+                <p>10:16 Automotive is certified through System X to apply genuine professional-grade 9H ceramic coatings. Curing into a semi-permanent barrier that repels water, road salt, bird droppings, and tree sap while imparting a wet liquid-glass depth.</p>
+                <div class="feature-bullets">
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Certified Application:</strong> Warranted System X installation by certified technician.</span></div>
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Extreme Hydrophobics:</strong> Water and dirt sheet off effortlessly during simple rinses.</span></div>
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Oxidation &amp; UV Shield:</strong> Protects clear coat from fading and yellowing in harsh sun.</span></div>
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Multi-Stage Paint Prep:</strong> Machine compounding eliminates swirls before coating.</span></div>
+                </div>
+                <div class="service-footer">
+                    <a href="/contact" class="btn btn-tactical-gold btn-sm">Get Ceramic Quote</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. DETAILING & COSMETICS -->
+        <div class="service-block">
+            <div class="service-media">
+                <img src="images/real-work-copper-ford-front.jpg" alt="Machine Polishing & Detailing Prep" />
+                <span class="service-badge">CLEAN BAY FINISH</span>
+            </div>
+            <div class="service-info">
+                <div class="service-icon-row">
+                    <div class="service-icon">
+                        <SharpIcon Name="crosshair" Size="26" />
+                    </div>
+                    <div>
+                        <h3>Paint Correction &amp; Automotive Cosmetics</h3>
+                        <span class="service-sub">Restoration, Polish &amp; Precision Detailing</span>
+                    </div>
+                </div>
+                <p>Flawless coating and wrap adhesion requires immaculate surface preparation. Under our specialized hexagon lighting grid, we identify and correct paint imperfections, water spots, and swirl marks to restore genuine showroom clarity.</p>
+                <div class="feature-bullets">
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Multi-Stage Correction:</strong> Removes up to 90%+ of clear coat swirl marks and scratches.</span></div>
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Headlight Restoration:</strong> Wet-sanding and UV ceramic sealing for cloudy lenses.</span></div>
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Wheel &amp; Caliper Guard:</strong> High-temperature ceramic coating against brake dust.</span></div>
+                    <div class="fb-item"><SharpIcon Name="check" Size="16" /> <span><strong>Trim Rejuvenation:</strong> Restores sun-faded black plastic trims to factory rich tone.</span></div>
+                </div>
+                <div class="service-footer">
+                    <a href="/contact" class="btn btn-tactical-gold btn-sm">Get Detail Quote</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PARTNERSHIP & SUPPLIER CALLOUT -->
+    <div class="partners-banner">
+        <div class="partner-box">
+            <SharpIcon Name="diamond-ceramic" Size="36" />
+            <div>
+                <h4>System X Ceramic Protections</h4>
+                <p>Certified Installation Partner &bull; Authorized 9H Ceramic Protection Center</p>
+            </div>
+        </div>
+        <div class="partner-divider"></div>
+        <div class="partner-box">
+            <SharpIcon Name="sun-tint" Size="36" />
+            <div>
+                <h4>Geoshield Window Films</h4>
+                <p>Primary Automotive Tint Supplier &bull; Nano-Ceramic Infrared Blocking Technology</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,221 @@
+.services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 0 3.5rem 0;
+}
+
+.services-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(212, 154, 61, 0.12);
+    border: 1px solid rgba(212, 154, 61, 0.35);
+    color: var(--brand-accent);
+    padding: 0.35rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.services-hero h1 {
+    font-size: 2.75rem;
+    color: #edf2ee;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+}
+
+.lead-text {
+    max-width: 760px;
+    margin: 0 auto;
+    color: #a2b2a4;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.services-detail-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.service-block {
+    background: #18221a;
+    border: 1px solid rgba(74, 93, 78, 0.35);
+    border-radius: 8px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.3s ease;
+}
+
+.service-block:hover {
+    border-color: var(--brand-accent);
+}
+
+@media (max-width: 850px) {
+    .service-block {
+        grid-template-columns: 1fr;
+    }
+}
+
+.service-media {
+    position: relative;
+    background: #0d120f;
+    min-height: 280px;
+}
+
+.service-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.service-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(13, 18, 15, 0.9);
+    border: 1px solid var(--brand-accent);
+    color: var(--brand-accent);
+    padding: 0.3rem 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+.service-info {
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-icon-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.service-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(44, 62, 45, 0.5);
+    border: 1px solid rgba(212, 154, 61, 0.35);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-accent);
+    flex-shrink: 0;
+}
+
+.service-icon-row h3 {
+    margin: 0 0 0.2rem 0;
+    font-size: 1.45rem;
+    color: #edf2ee;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.service-sub {
+    font-size: 0.85rem;
+    color: var(--brand-accent);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.service-info p {
+    font-size: 0.95rem;
+    color: #a2b2a4;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.feature-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-bottom: 1.75rem;
+    background: rgba(13, 18, 15, 0.5);
+    border: 1px solid rgba(74, 93, 78, 0.25);
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+}
+
+.fb-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.88rem;
+    color: #c4d4c6;
+    line-height: 1.45;
+}
+
+.fb-item strong {
+    color: #edf2ee;
+}
+
+.service-footer {
+    margin-top: auto;
+}
+
+/* PARTNERS BANNER */
+.partners-banner {
+    background: #18221a;
+    border: 1px solid rgba(212, 154, 61, 0.35);
+    border-radius: 8px;
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.partner-box {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    color: var(--brand-accent);
+}
+
+.partner-box h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.2rem;
+    color: #edf2ee;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.partner-box p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #a2b2a4;
+}
+
+.partner-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(74, 93, 78, 0.4);
+}
+
+@media (max-width: 768px) {
+    .partner-divider {
+        display: none;
+    }
+}
