@@ -158,7 +158,7 @@ Sitemap: {domain}/sitemap.xml
     <!-- Developer & Copyright Attribution -->
     <meta name="author" content="Jason Barrera" />
     <meta name="developer" content="Jason Barrera" />
-    <meta name="contact" content="info@jbdigitalservices.net" />
+    <meta name="contact" content="{html.escape(primary_email, quote=True)}" />
     <meta name="copyright" content="Copyright © {year} {html.escape(company_name, quote=True)}" />
 
     <!-- Open Graph for Social Sharing -->
