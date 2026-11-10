@@ -114,6 +114,21 @@
                 </div>
 
                 <div class="form-row">
+                    <div class="form-group" style="flex: 1;">
+                        <label for="vehicleYear">Vehicle Year</label>
+                        <input type="text" id="vehicleYear" @bind="vehicleYear" placeholder="e.g. 2024" maxlength="4" />
+                    </div>
+                    <div class="form-group" style="flex: 1.5;">
+                        <label for="vehicleMake">Automobile Make <span class="req">*</span></label>
+                        <input type="text" id="vehicleMake" @bind="vehicleMake" required placeholder="e.g. Ford, Chevrolet, Tesla" />
+                    </div>
+                    <div class="form-group" style="flex: 1.5;">
+                        <label for="vehicleModel">Automobile Model <span class="req">*</span></label>
+                        <input type="text" id="vehicleModel" @bind="vehicleModel" required placeholder="e.g. F-150, Corvette, Model Y" />
+                    </div>
+                </div>
+
+                <div class="form-row">
                     <div class="form-group">
                         <label for="serviceType">Primary Service Desired <span class="req">*</span></label>
                         <select id="serviceType" @bind="serviceType" required>
@@ -148,6 +163,9 @@
     private string name = "";
     private string phoneNumber = "";
     private string email = "";
+    private string vehicleYear = "";
+    private string vehicleMake = "";
+    private string vehicleModel = "";
     private string contactMethod = "Phone Call";
     private string serviceType = "Geoshield Ceramic Window Tint";
     private DateTime? startDate = null;
@@ -171,6 +189,11 @@
             return;
         }
 
+        string vehicleSummary = $"{vehicleYear} {vehicleMake} {vehicleModel}".Trim();
+        string fullMessage = !string.IsNullOrWhiteSpace(vehicleSummary)
+            ? $"[Vehicle: {vehicleSummary}]\n\n{message}"
+            : message;
+
         var payload = new LeadSubmissionRequest
         {
             BusinessId = BusinessConfig.Value.BusinessId,
@@ -178,10 +201,13 @@
             Name = name,
             Phone = phoneNumber,
             Email = email,
+            VehicleYear = vehicleYear.Trim(),
+            VehicleMake = vehicleMake.Trim(),
+            VehicleModel = vehicleModel.Trim(),
             PreferredContactMethod = contactMethod,
             ServiceType = serviceType,
             PreferredStartDate = startDate?.ToString("yyyy-MM-dd"),
-            Message = message,
+            Message = fullMessage,
             Honeypot = botHoneypot
         };
 
@@ -213,6 +239,9 @@
         name = "";
         phoneNumber = "";
         email = "";
+        vehicleYear = "";
+        vehicleMake = "";
+        vehicleModel = "";
         contactMethod = "Phone Call";
         serviceType = "Geoshield Ceramic Window Tint";
         startDate = null;

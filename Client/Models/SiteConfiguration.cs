@@ -97,6 +97,9 @@ namespace SmallBusinessSite.Client.Models
         public string Name { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
+        public string? VehicleYear { get; set; }
+        public string VehicleMake { get; set; } = string.Empty;
+        public string VehicleModel { get; set; } = string.Empty;
         public string PreferredContactMethod { get; set; } = string.Empty;
         public string ServiceType { get; set; } = string.Empty;
         public string? PreferredStartDate { get; set; }

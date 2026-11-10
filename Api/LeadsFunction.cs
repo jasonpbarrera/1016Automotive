@@ -84,6 +84,9 @@ namespace SmallBusinessSite.Api
                 Name = input.Name.Trim(),
                 Email = input.Email.Trim(),
                 Phone = input.Phone.Trim(),
+                VehicleYear = string.IsNullOrWhiteSpace(input.VehicleYear) ? null : input.VehicleYear.Trim(),
+                VehicleMake = string.IsNullOrWhiteSpace(input.VehicleMake) ? null : input.VehicleMake.Trim(),
+                VehicleModel = string.IsNullOrWhiteSpace(input.VehicleModel) ? null : input.VehicleModel.Trim(),
                 PreferredContactMethod = input.PreferredContactMethod?.Trim() ?? "",
                 ServiceType = input.ServiceType?.Trim() ?? "",
                 PreferredStartDate = string.IsNullOrWhiteSpace(input.PreferredStartDate) ? null : input.PreferredStartDate.Trim(),
@@ -261,24 +264,31 @@ namespace SmallBusinessSite.Api
             LeadSubmissionDto lead)
         {
             string company = string.IsNullOrWhiteSpace(lead.CompanyName) ? lead.BusinessId : lead.CompanyName;
+            string vehicleDisplay = $"{lead.VehicleYear} {lead.VehicleMake} {lead.VehicleModel}".Trim();
+            string vehicleRow = !string.IsNullOrWhiteSpace(vehicleDisplay)
+                ? $"<tr><td style='padding:6px 12px;font-weight:bold;'>Automobile:</td><td style='padding:6px 12px;color:#D49A3D;font-weight:bold;'>{WebUtility.HtmlEncode(vehicleDisplay)}</td></tr>"
+                : "";
+
             string htmlBody = $@"
                 <h2>New Website Inquiry — {WebUtility.HtmlEncode(company)}</h2>
                 <table style='border-collapse:collapse;font-family:sans-serif;'>
                     <tr><td style='padding:6px 12px;font-weight:bold;'>Name:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.Name)}</td></tr>
                     <tr><td style='padding:6px 12px;font-weight:bold;'>Phone:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.Phone)}</td></tr>
                     <tr><td style='padding:6px 12px;font-weight:bold;'>Email:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.Email)}</td></tr>
+                    {vehicleRow}
                     <tr><td style='padding:6px 12px;font-weight:bold;'>Preferred Contact:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.PreferredContactMethod)}</td></tr>
                     <tr><td style='padding:6px 12px;font-weight:bold;'>Service Needed:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.ServiceType)}</td></tr>
                     <tr><td style='padding:6px 12px;font-weight:bold;'>Preferred Start Date:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.PreferredStartDate ?? "N/A")}</td></tr>
                     <tr><td style='padding:6px 12px;font-weight:bold;'>Message:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.Message)}</td></tr>
                 </table>";
 
+            string subjectVehicle = !string.IsNullOrWhiteSpace(vehicleDisplay) ? $" — {vehicleDisplay}" : "";
             var payload = new
             {
                 sender = new { name = company, email = senderEmail },
                 to = new[] { new { email = recipientEmail, name = company } },
                 replyTo = new { email = lead.Email, name = lead.Name },
-                subject = $"New Inquiry from {lead.Name} ({lead.ServiceType})",
+                subject = $"New Inquiry from {lead.Name}{subjectVehicle} ({lead.ServiceType})",
                 htmlContent = htmlBody
             };
 
@@ -302,6 +312,9 @@ namespace SmallBusinessSite.Api
         public string Name { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
+        public string? VehicleYear { get; set; }
+        public string? VehicleMake { get; set; }
+        public string? VehicleModel { get; set; }
         public string PreferredContactMethod { get; set; } = string.Empty;
         public string ServiceType { get; set; } = string.Empty;
         public string? PreferredStartDate { get; set; }
@@ -352,6 +365,15 @@ namespace SmallBusinessSite.Api
 
         [JsonPropertyName("phone")]
         public string Phone { get; set; } = string.Empty;
+
+        [JsonPropertyName("vehicleYear")]
+        public string? VehicleYear { get; set; }
+
+        [JsonPropertyName("vehicleMake")]
+        public string? VehicleMake { get; set; }
+
+        [JsonPropertyName("vehicleModel")]
+        public string? VehicleModel { get; set; }
 
         [JsonPropertyName("preferredContactMethod")]
         public string PreferredContactMethod { get; set; } = string.Empty;
