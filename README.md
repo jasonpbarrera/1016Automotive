@@ -1,6 +1,6 @@
 # 10:16 Automotive — Official Website & Lead Capture Platform
 
-A high-performance small business website and lead dispatch platform built with **Blazor WebAssembly (.NET 10)**, **Azure Static Web Apps Managed Functions (.NET 10)**, **Azure Cosmos DB Free Tier**, and **Stripe Hosted Billing Integration** on the **JB Digital Services** agency architecture.
+A high-performance small business website and lead dispatch platform built with **Blazor WebAssembly (.NET 10)**, **Cloudflare Workers with Static Assets (Free Tier)**, and **Brevo Lead Dispatch** on the **JB Digital Services** agency architecture.
 
 * **Client Business**: **10:16 Automotive**
 * **Owner / Lead Specialist**: **Donny Bliss** (6-Year U.S. Army Veteran)
@@ -47,7 +47,7 @@ A high-performance small business website and lead dispatch platform built with 
 5. **Specialized Services Breakdown (`/services`)**:
    * In-depth specifications for Geoshield ceramic window film, custom cast vinyl wraps, and System X 9H quartz coatings.
 6. **Lead & Estimate Intake (`/contact`)**:
-   * Vehicle year/make/model intake, service selection, timeframe, honeypot protection, and Cosmos DB dispatch.
+   * Vehicle year/make/model intake, service selection, timeframe, honeypot protection, and Brevo email dispatch.
 
 ---
 
@@ -55,9 +55,10 @@ A high-performance small business website and lead dispatch platform built with 
 
 ```mermaid
 graph LR
-    Visitor["Visitor Browser\n(Blazor WASM)"] -->|"POST /api/leads"| Api["Azure SWA Function\n(LeadsFunction.cs)"]
-    Api -->|"COSMOS_CONNECTION_STRING"| Cosmos[("Azure Cosmos DB\nDatabase: SmallBusinessPlatform\nContainer: leads (/businessId)")]
-    AgencyPortal["JB Digital Services Agency Portal\n(/dashboard, /clients, /billing)"] -->|"REST Upsert / Query"| Cosmos
+    Visitor["Visitor Browser\n(Blazor WASM)"] -->|"POST /api/leads"| Worker["Cloudflare Edge Worker\n(worker/index.js)"]
+    Worker -->|"Brevo REST API"| Brevo["Brevo SMTP Delivery\n(1016automotive@gmail.com)"]
+    Worker -->|"Static Assets"| Edge["Cloudflare Global Edge Cache\n(publish_output/wwwroot)"]
+    AgencyPortal["JB Digital Services Agency Portal\n(/dashboard, /clients, /billing)"] -->|"Cosmos DB Sync"| Record[("Tenant Registry\n1016-automotive")]
 ```
 
 ---
@@ -68,5 +69,7 @@ graph LR
 * [x] Configured `appsettings.json` with tactical army palette and complete business metadata.
 * [x] Integrated authentic client work photos and official logo emblem.
 * [x] Synchronized static SEO tags, sitemap.xml, robots.txt, and manifest.webmanifest.
-* [ ] Domain acquisition and Cloudflare DNS setup (pending client domain purchase).
-* [ ] Cloudflare Email Routing & Brevo outbound alert configuration.
+* [x] Custom domain `1016auto.com` & `www.1016auto.com` provisioned and SSL active on Cloudflare Edge.
+* [x] Cloudflare Email Routing (`info@1016auto.com`, `donny@1016auto.com` -> `1016automotive@gmail.com`).
+* [x] Brevo outbound email alert configuration and domain DKIM/SPF verification.
+* [x] Migrated to Cloudflare Workers with Static Assets (Free Tier) and retired legacy Azure SWA.
