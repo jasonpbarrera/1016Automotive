@@ -1,0 +1,22 @@
+name = "1016-automotive"
+main = "worker/index.js"
+compatibility_date = "2026-04-01"
+workers_dev = true
+
+[assets]
+directory = "publish_output/wwwroot"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+run_worker_first = ["/api/*"]
+
+[vars]
+LEAD_NOTIFICATION_EMAIL = "1016automotive@gmail.com"
+BREVO_SENDER_EMAIL = "info@1016auto.com"
+
+[[routes]]
+pattern = "1016auto.com"
+custom_domain = true
+
+[[routes]]
+pattern = "www.1016auto.com"
+custom_domain = true
