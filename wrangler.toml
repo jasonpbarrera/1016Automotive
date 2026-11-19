@@ -7,7 +7,7 @@ workers_dev = true
 directory = "publish_output/wwwroot"
 binding = "ASSETS"
 not_found_handling = "single-page-application"
-run_worker_first = true
+run_worker_first = ["/api/*"]
 
 [vars]
 LEAD_NOTIFICATION_EMAIL = "1016automotive@gmail.com"

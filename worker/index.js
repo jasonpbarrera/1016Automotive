@@ -164,11 +164,6 @@ async function handleLeads(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    if (url.hostname === "www.1016auto.com") {
-      url.hostname = "1016auto.com";
-      return Response.redirect(url.toString(), 301);
-    }
-
     const pathname = url.pathname.replace(/\/+$/, "") || "/";
 
     if (pathname === "/api/leads") {
